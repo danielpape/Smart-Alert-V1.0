@@ -12,7 +12,28 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [[UIBarButtonItem appearance] setTintColor:[UIColor colorWithRed:202.0/255.0
+                                                               green:34.0/255.0
+                                                                blue:62.0/255.0
+                                                               alpha:1.0]];
+    
+    defaults = [[NSUserDefaults alloc]init];
+    if ([defaults boolForKey:@"alertSet"]){
+        UIViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"setView"];
+        self.window.rootViewController = controller;
+    }else{
+        
+        UIViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"alertView"];
+        self.window.rootViewController = controller;
+        // UIStoryboard *setView = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        // initialViewController = [setView instantiateInitialViewController];
+    }
+    
+    UIPageControl *pageControl = [UIPageControl appearance];
+    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+    pageControl.backgroundColor = [UIColor whiteColor];
+    
     return YES;
 }
 							
@@ -21,16 +42,25 @@
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
-
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    defaults = [[NSUserDefaults alloc]init];
+    if ([defaults boolForKey:@"alertSet"]){
+        UIViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"setView"];
+        self.window.rootViewController = controller;
+    }else{
+        
+        UIViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"alertView"];
+        self.window.rootViewController = controller;
+        // UIStoryboard *setView = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+        // initialViewController = [setView instantiateInitialViewController];
+    }
+    
+    UIPageControl *pageControl = [UIPageControl appearance];
+    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+    pageControl.backgroundColor = [UIColor whiteColor];
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -42,5 +72,63 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+   /* CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    [locationManager setDelegate:self];
+    [locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    
+    
+    [KCSPing pingKinveyWithBlock:^(KCSPingResult *result) {
+        if (result.pingWasSuccessful == YES){
+            NSLog(@"Kinvey Ping Success");
+        } else {
+            NSLog(@"Kinvey Ping Failed");
+        }
+    }];
+
+    
+    if ([CLLocationManager locationServicesEnabled]) {
+        // Find the current location
+        [locationManager startMonitoringSignificantLocationChanges];
+        //rest of code...
+    }*/
+}
+/*
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    // locations contains an array of recent locations, but this app only cares about the most recent
+    // which is also "manager.location"
+   // [self foundLocation:manager.location]; // update the user object in this method
+}
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"Location manager failed with error: %@", error);
+    if ([error.domain isEqualToString:kCLErrorDomain] && error.code == kCLErrorDenied) {
+        //user denied location services so stop updating manager
+        [manager stopUpdatingLocation];
+        //respect user privacy and remove stored location
+        CLLocation* currentLocation = [[KCSUser activeUser] getValueForAttribute:KCSEntityKeyGeolocation];
+        if (currentLocation != nil) {
+            [[KCSUser activeUser] removeValueForAttribute:KCSEntityKeyGeolocation];
+            [[KCSUser activeUser] saveWithCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+                NSLog(@"saved user: %@ - %@", @(errorOrNil == nil), errorOrNil);
+            }];
+        }
+    }*/
+//}
+
+//- (void)foundLocation:(CLLocation *)location
+//{
+    //[[KCSUser activeUser] setValue:location forAttribute:KCSEntityKeyGeolocation];
+   // [[KCSUser activeUser] saveWithCompletionBlock:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+  //      NSLog(@"saved user: %@ - %@", @(errorOrNil == nil), errorOrNil);
+  //  }];
+    
+   // NSLog(@"Found your location! It's %@",location);
+//}
+
+
+
 
 @end

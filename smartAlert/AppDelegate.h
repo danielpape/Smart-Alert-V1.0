@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+//#import <KinveyKit/KinveyKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,CLLocationManagerDelegate>{
+    NSUserDefaults *defaults;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

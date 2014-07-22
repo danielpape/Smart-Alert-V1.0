@@ -7,7 +7,30 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AddressBook/AddressBook.h>
+#import <AddressBookUI/AddressBookUI.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate, UIPageViewControllerDataSource>{
+    NSString *phoneNumber;
+    NSString *contactName;
+    NSString *message;
+    NSMutableArray *ChosenContactNames;
+    NSMutableArray *ChosenContactNumbers;
+    NSDate *checkupTime;
+    NSUserDefaults *defaults;
+}
+
+@property (nonatomic, strong) ABPeoplePickerNavigationController *addressBookController;
+@property (nonatomic, strong) NSDictionary *dictContactDetails;
+@property (nonatomic, strong) NSMutableArray *arrContactsData;
+@property (strong, nonatomic) IBOutlet UITextView *contactsLabel;
+@property (strong, nonatomic) UIPageViewController *pageController;
+
+@property (strong, nonatomic) IBOutlet UIImageView *pulse1;
+@property (strong, nonatomic) IBOutlet UIImageView *pulse2;
+
+- (IBAction) sendTestText;
+- (IBAction) showAddressBook;
 
 @end
