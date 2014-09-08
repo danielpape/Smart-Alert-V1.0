@@ -18,21 +18,30 @@
                                                                alpha:1.0]];
     
     defaults = [[NSUserDefaults alloc]init];
-    if ([defaults boolForKey:@"alertSet"]){
+    
+    NSLog(@"%hhd",[defaults boolForKey:@"returnVisit"]);
+    NSLog(@"%hhd",[defaults boolForKey:@"alertSet"]);
+    
+    if ([defaults boolForKey:@"alertSet"]) {
         UIViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"setView"];
         self.window.rootViewController = controller;
-    }else{
         
-        UIViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"alertView"];
-        self.window.rootViewController = controller;
-        // UIStoryboard *setView = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-        // initialViewController = [setView instantiateInitialViewController];
+    }else{
+        if ([defaults boolForKey:@"returnVisit"]) {
+            UIViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"alertView"];
+            self.window.rootViewController = controller;
+        }else{
+        
+            UIViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"intro"];
+            self.window.rootViewController = controller;
+        }
     }
     
-    UIPageControl *pageControl = [UIPageControl appearance];
-    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
-    pageControl.backgroundColor = [UIColor whiteColor];
+    
+//    UIPageControl *pageControl = [UIPageControl appearance];
+//    pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+//    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+//    pageControl.backgroundColor = [UIColor clearColor];
     
     return YES;
 }
@@ -45,16 +54,24 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     defaults = [[NSUserDefaults alloc]init];
-    if ([defaults boolForKey:@"alertSet"]){
+    
+    NSLog(@"%hhd",[defaults boolForKey:@"returnVisit"]);
+    
+    if ([defaults boolForKey:@"alertSet"]) {
         UIViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"setView"];
         self.window.rootViewController = controller;
-    }else{
         
-        UIViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"alertView"];
-        self.window.rootViewController = controller;
-        // UIStoryboard *setView = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-        // initialViewController = [setView instantiateInitialViewController];
+    }else{
+        if ([defaults boolForKey:@"returnVisit"]) {
+            UIViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"alertView"];
+            self.window.rootViewController = controller;
+        }else{
+            
+            UIViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"intro"];
+            self.window.rootViewController = controller;
+        }
     }
+
     
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];

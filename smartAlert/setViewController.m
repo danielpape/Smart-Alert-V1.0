@@ -33,6 +33,7 @@
     defaults = [[NSUserDefaults alloc]init];
     [self countdownTimer];
     countdownRunning = YES;
+    ChosenContactNames = [NSMutableArray arrayWithObjects:@"Dan",@"John",@"Katy",@"David", @"Betty", nil];
     [super viewDidLoad];
 }
 
@@ -248,6 +249,7 @@
     else{
         self.timerLabel.text = [NSString stringWithFormat:@"Alert Sent"];
         [self sendAlert];
+        [timer invalidate];
     }
 }
 
@@ -264,7 +266,10 @@
     if (countdownRunning) {
         [self cancelAlertAction];
     }else{
-       // Present Alert View
+        UIViewController *purchaseContr = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"alertView"];
+        //menu is only an example
+        purchaseContr.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:purchaseContr animated:YES completion:nil];
     }
 }
 
@@ -278,7 +283,20 @@
 }
 
 -(void)sendAlert{
+    defaults = [[NSUserDefaults alloc]init];
+        
+    _contactNumbers = [defaults objectForKey:@"numbersArray"];
     
+    NSString *URL = [NSString stringWithFormat:@"http://rest.nexmo.com/sms/xml?api_key=ac8488f3&api_secret=e30532b5&from=SmartAlert&to=%@&text=ThisIsATest!",[_contactNumbers objectAtIndex:0]];
+    
+    NSLog(@"ALERT SENT, TO URL %@", URL);
+    
+    //    UIWebView *wv = [[UIWebView alloc] init];
+    NSURL *textURL = [NSURL URLWithString:URL];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:textURL];
+    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
+    [connection start];
 }
 
 @end

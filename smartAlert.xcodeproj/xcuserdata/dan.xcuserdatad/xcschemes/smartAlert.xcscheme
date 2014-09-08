@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "37D37751192BF0E900871648"
-               BuildableName = "smartAlert.app"
+               BuildableName = "Smart Alert.app"
                BlueprintName = "smartAlert"
                ReferencedContainer = "container:smartAlert.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "37D37751192BF0E900871648"
-            BuildableName = "smartAlert.app"
+            BuildableName = "Smart Alert.app"
             BlueprintName = "smartAlert"
             ReferencedContainer = "container:smartAlert.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "37D37751192BF0E900871648"
-            BuildableName = "smartAlert.app"
+            BuildableName = "Smart Alert.app"
             BlueprintName = "smartAlert"
             ReferencedContainer = "container:smartAlert.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "37D37751192BF0E900871648"
-            BuildableName = "smartAlert.app"
+            BuildableName = "Smart Alert.app"
             BlueprintName = "smartAlert"
             ReferencedContainer = "container:smartAlert.xcodeproj">
          </BuildableReference>

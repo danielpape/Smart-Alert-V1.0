@@ -10,13 +10,14 @@
 #import <AddressBook/AddressBook.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import <CoreLocation/CoreLocation.h>
+#import "UIViewController+MJPopupViewController.h"
+#import "PageContentViewController.h"
 
-@interface ViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate, UIPageViewControllerDataSource>{
-    NSString *phoneNumber;
+
+
+@interface ViewController : UIViewController <ABPeoplePickerNavigationControllerDelegate,UIPageViewControllerDataSource>{
     NSString *contactName;
     NSString *message;
-    NSMutableArray *ChosenContactNames;
-    NSMutableArray *ChosenContactNumbers;
     NSDate *checkupTime;
     NSUserDefaults *defaults;
 }
@@ -25,7 +26,17 @@
 @property (nonatomic, strong) NSDictionary *dictContactDetails;
 @property (nonatomic, strong) NSMutableArray *arrContactsData;
 @property (strong, nonatomic) IBOutlet UITextView *contactsLabel;
-@property (strong, nonatomic) UIPageViewController *pageController;
+@property (strong, nonatomic) IBOutlet UIImageView *backgroundImage;
+
+@property (strong, nonatomic) NSString *phoneNumber;
+@property (strong, nonatomic) NSMutableArray *ChosenContactNames;
+@property (strong, nonatomic) NSMutableArray *ChosenContactNumbers;
+
+
+@property (strong, nonatomic) UIPageViewController *pageViewController;
+//@property (strong, nonatomic) PageContentViewController *PCVC;
+@property (strong, nonatomic) NSArray *pageTitles;
+@property (strong, nonatomic) NSArray *pageImages;
 
 @property (strong, nonatomic) IBOutlet UIImageView *pulse1;
 @property (strong, nonatomic) IBOutlet UIImageView *pulse2;

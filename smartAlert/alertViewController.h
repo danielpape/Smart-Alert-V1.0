@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SevenSwitch.h"
+#import "UIViewController+MJPopupViewController.h"
+#import "ViewController.h"
 
 
 @interface alertViewController : UIViewController{
@@ -17,7 +19,15 @@
 @property (nonatomic, strong) IBOutlet SevenSwitch *ibSwitch;
 @property (strong, nonatomic) IBOutlet UIButton *pulseImage;
 @property (strong, nonatomic) IBOutlet UIButton *settingsButton;
+@property (strong, nonatomic) IBOutlet UIImageView *alertHasBeenSentView;
+@property (strong, nonatomic) IBOutlet UIButton *ReturnButton;
+@property (strong, nonatomic) ViewController *VC;
 
+@property(strong, nonatomic) NSMutableArray *contactNames;
+@property(strong, nonatomic) NSMutableArray *contactNumbers;
+
+
+- (IBAction)tapResetButton:(id)sender;
 -(void)setAlert;
 - (IBAction) tapSetAlertButton;
 @end

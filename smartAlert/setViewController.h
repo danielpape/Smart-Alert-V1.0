@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface setViewController : UIViewController{
+    NSMutableArray *ChosenContactNames;
+    NSMutableArray *ChosenContactNumbers;
     NSUserDefaults *defaults;
 }
 
@@ -24,6 +26,7 @@
 @property (strong, nonatomic) IBOutlet UIView *CDView2;
 @property (strong, nonatomic) IBOutlet UIView *CDView1;
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
+@property(strong, nonatomic) NSMutableArray *contactNumbers;
 
 - (IBAction)tapResetButton;
 - (IBAction) cancelAlert;
