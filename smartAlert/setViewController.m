@@ -17,7 +17,9 @@
     int hours, minutes,seconds;
     int secondsLeft;
     NSTimer *timer;
+    NSTimer *limiter;
     BOOL countdownRunning;
+    BOOL sent;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +36,7 @@
     [self countdownTimer];
     countdownRunning = YES;
     ChosenContactNames = [NSMutableArray arrayWithObjects:@"Dan",@"John",@"Katy",@"David", @"Betty", nil];
+    sent = NO;
     [super viewDidLoad];
 }
 
@@ -246,10 +249,15 @@
         }
         
     }
-    else{
+    else if(secondsLeft == 0){
         self.timerLabel.text = [NSString stringWithFormat:@"Alert Sent"];
-        [self sendAlert];
+        [self.cancelButton setTitle:[NSString stringWithFormat:@"Return to Smart Alert Button"] forState:UIControlStateNormal];
+        if (!sent) {
+            [self sendAlert];
+        }
+        sent = YES;
         [timer invalidate];
+        countdownRunning = NO;
     }
 }
 
@@ -266,10 +274,10 @@
     if (countdownRunning) {
         [self cancelAlertAction];
     }else{
-        UIViewController *purchaseContr = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"alertView"];
+        UIViewController *alertContr = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"alertView"];
         //menu is only an example
-        purchaseContr.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self presentViewController:purchaseContr animated:YES completion:nil];
+        alertContr.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:alertContr animated:YES completion:nil];
     }
 }
 
@@ -287,7 +295,20 @@
         
     _contactNumbers = [defaults objectForKey:@"numbersArray"];
     
-    NSString *URL = [NSString stringWithFormat:@"http://rest.nexmo.com/sms/xml?api_key=ac8488f3&api_secret=e30532b5&from=SmartAlert&to=%@&text=ThisIsATest!",[_contactNumbers objectAtIndex:0]];
+    NSString *myName = [defaults objectForKey:@"myName"];
+    NSString *myNumber = [defaults objectForKey:@"myNumber"];
+    NSString *fromString;
+    
+    NSLog(@"my number is %@",myNumber);
+    
+    if ([[_contactNumbers objectAtIndex:0] hasPrefix:@"1"]){
+        fromString = [NSString stringWithFormat:@"12084375123"];
+    }else{
+        fromString = [NSString stringWithFormat:@"SmartAlert"];
+    }
+    
+    NSString *URL = [NSString stringWithFormat:@"http://rest.nexmo.com/sms/xml?api_key=3c87ded3&api_secret=75ff100e&from=%@&to=%@&text=From+%@,+please+contact+me+as+soon+as+possible+on+%@.+I+may+currently+be+in+an+emergency+situation+and+need+your+help.+Sent+via+Smart+Alert.", fromString,[_contactNumbers objectAtIndex:0],myName,myNumber];
+
     
     NSLog(@"ALERT SENT, TO URL %@", URL);
     

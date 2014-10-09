@@ -38,15 +38,15 @@
     
     // Create the data model
     if (IS_IPHONE_5) {
-         _pageTitles = @[@"Welcome to Smart Alert. This is your emergency response app in case you need help.", @"First we'll need to know who you want to contact in an emergency, select the names from your address book by tapping above.", @"This is the main page. If you press the Send Alert button once at any time it will instantly send an emergency message to the contact(s) that you just selected.", @"Here you can prime the app so that the next time it's opened, it will automatically start counting down to send an emergency message.", @"If you use Prime, we recommend you move the Smart Alert onto your favourites bar for easy access. Hold down on the icon until it wiggles to move it here.", @"You're ready to go! You can replay this tutorial, change your contacts or make a donation to keep us going at any time using on the settings page."];
+         _pageTitles = @[@"Welcome to Smart Alert. This is your emergency response app in case you need help.",@"First, please enter your name & number. This is so you can be contacted in an emergency.", @"We'll need to know who you want to contact in an emergency, select the names from your address book by tapping above.", @"This is the main page. If you press the Send Alert button once at any time it will instantly send an emergency message to the contact(s) that you just selected.", @"Here you can prime the app so that the next time it's opened, it will automatically start counting down to send an emergency message.", @"If you use Prime, we recommend you move the Smart Alert onto your favourites bar for easy access. Hold down on the icon until it wiggles to move it here.", @"You're ready to go! You can replay this tutorial, change your contacts or make a donation to keep us going at any time using on the settings page."];
     }else if(!IS_IPHONE_5){
-    _pageTitles = @[@"Welcome to Smart Alert. This is your emergency response app in case you need help.", @"First we'll need to know who you want to contact in an emergency, select the names from your address book by tapping above.", @"", @"", @"", @""];
+    _pageTitles = @[@"Welcome to Smart Alert. This is your emergency response app in case you need help.",@"First, please enter your name & number. This is so you can be contacted in an emergency.", @"First we'll need to know who you want to contact in an emergency, select the names from your address book by tapping above.", @"", @"", @"", @""];
     }
         
     if (IS_IPHONE_5) {
-        _pageImages = @[@"appIconIntroScreen.png", @"addContactImage.png", @"overlay2.png", @"overlay3.png", @"movetodock.png", @"overlay4.png"];
+        _pageImages = @[@"appIconIntroScreen.png",@"", @"addContactImage.png", @"overlay2.png", @"overlay3.png", @"movetodock.png", @"overlay4.png"];
     }else if (!IS_IPHONE_5){
-    _pageImages = @[@"appIconIntroScreen.png", @"addContactImage.png", @"overlay2-4.png", @"overlay3-4.png", @"movetodock-4.png", @"overlay4-4.png"];
+    _pageImages = @[@"appIconIntroScreen.png",@"", @"addContactImage.png", @"overlay2-4.png", @"overlay3-4.png", @"movetodock-4.png", @"overlay4-4.png"];
     }
     
     if (!IS_IPHONE_5) {
@@ -220,9 +220,24 @@
     
     if (pageContentViewController.pageIndex==1) {
         self.backgroundImage.alpha = 0;
+        
     }
     
     if (pageContentViewController.pageIndex==2) {
+        self.backgroundImage.alpha = 0;
+        
+        if(_nameString == nil || _numberString == nil){
+            for (UIScrollView *view in self.pageViewController.view.subviews) {
+                
+                if ([view isKindOfClass:[UIScrollView class]]) {
+                    
+                    view.scrollEnabled = NO;
+                }
+            }
+        }
+    }
+    
+    if (pageContentViewController.pageIndex==3) {
         self.backgroundImage.alpha = 0;
         
         if(_ChosenContactNames.count == 0){
@@ -236,7 +251,7 @@
         }
     }
     
-    if (pageContentViewController.pageIndex==3) {
+    if (pageContentViewController.pageIndex==4) {
         self.backgroundImage.alpha = 1;
         
         if(_ChosenContactNames.count == 0){
@@ -244,15 +259,15 @@
         }
     }
     
-    if (pageContentViewController.pageIndex==4) {
-        self.backgroundImage.alpha = 1;
-    }
-    
     if (pageContentViewController.pageIndex==5) {
         self.backgroundImage.alpha = 1;
     }
     
     if (pageContentViewController.pageIndex==6) {
+        self.backgroundImage.alpha = 1;
+    }
+    
+    if (pageContentViewController.pageIndex==7) {
         self.backgroundImage.alpha = 1;
         pageContentViewController.beginButton.alpha = 1;
     }

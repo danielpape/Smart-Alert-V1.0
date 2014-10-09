@@ -15,11 +15,18 @@
     NSString *message;
     NSDate *checkupTime;
     NSUserDefaults *defaults;
+    CGPoint dataEntryViewOrigin;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *slideArrowImageView;
+@property (strong, nonatomic) IBOutlet UIView *dataEntryView;
+@property (strong, nonatomic) IBOutlet UITextField *nameTextBox;
+@property (strong, nonatomic) IBOutlet UITextField *numberTextBox;
+@property (strong, nonatomic) IBOutlet NSString *nameString;
+@property (strong, nonatomic) IBOutlet NSString *numberString;
+
 
 @property (strong, nonatomic) NSMutableArray *ChosenContactNames;
 @property (strong, nonatomic) NSMutableArray *ChosenContactNumbers;
@@ -58,6 +65,7 @@
 - (IBAction)tapBeginButton:(id)sender;
 - (IBAction)tapAddContactButton:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *iPhone4BeginButton;
+@property (strong, nonatomic) IBOutlet UILabel *swipeLabel;
 
 @property NSUInteger pageIndex;
 @property NSString *titleText;
@@ -67,6 +75,9 @@
 @property (nonatomic, strong) ABPeoplePickerNavigationController *addressBookController;
 @property (nonatomic, strong) NSDictionary *dictContactDetails;
 @property (nonatomic, strong) NSMutableArray *arrContactsData;
+
+- (IBAction)topReturnKeyPressed:(id)sender;
+- (IBAction)returnKeyPressed:(id)sender;
 
 - (void)displaySlide2Content;
 @end

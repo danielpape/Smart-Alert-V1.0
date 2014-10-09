@@ -138,7 +138,7 @@ BOOL purchased;
 
 - (IBAction)tapContactUsButton:(id)sender {
     [[UIApplication sharedApplication]
-     openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/gb/app/smart-alert-beta/id903103583"]];
+     openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/us/app/smart-alert-an-app-for-life/id903103583"]];
 }
 
 - (IBAction)tapShareButton{
@@ -146,7 +146,7 @@ if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
     //2
     SLComposeViewController *FBSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
     //3
-        [FBSheet setInitialText:@"Check Out Smart Alert, the emergency response app. Now available on the App Store "];
+        [FBSheet setInitialText:@"Check Out Smart Alert, the emergency response app. Now available on the App Store http://bit.ly/1pTSwI4"];
     [FBSheet addImage:[UIImage imageNamed:@"appIcon001.png"]];
     //[tweetSheet addImage:image];
     //4

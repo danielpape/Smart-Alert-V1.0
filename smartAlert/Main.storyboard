@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="GWd-3a-q7u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="GWd-3a-q7u">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment defaultVersion="1808" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -58,8 +59,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xla-Ej-DNV">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xla-Ej-DNV">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="Ybh-hV-DiE"/>
+                                    <constraint firstAttribute="height" constant="568" id="vbq-wh-P4Z"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="RqQ-0i-CZM">
                                 <rect key="frame" x="20" y="321" width="280" height="95"/>
@@ -85,6 +90,7 @@
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCT-5g-ase">
                                 <rect key="frame" x="133" y="254" width="54" height="30"/>
                                 <state key="normal" title="Change">
+                                    <color key="titleColor" red="0.82352941180000006" green="0.0" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -102,7 +108,7 @@
                                     <action selector="tapBeginButton:" destination="scj-TH-BXC" eventType="touchUpInside" id="oDv-JG-3mt"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" placeholderIntrinsicWidth="25" placeholderIntrinsicHeight="25" image="slideArrow.png" highlightedImage="slideArrowHighlighted.png" translatesAutoresizingMaskIntoConstraints="NO" id="J36-xT-jPf">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="25" placeholderIntrinsicHeight="25" image="slideArrow.png" highlightedImage="slideArrowHighlighted.png" translatesAutoresizingMaskIntoConstraints="NO" id="J36-xT-jPf">
                                 <rect key="frame" x="275" y="523" width="25" height="25"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xa0-B5-aMF">
@@ -121,10 +127,55 @@
                                     <action selector="tapBeginButton:" destination="scj-TH-BXC" eventType="touchUpInside" id="0hA-SZ-5ep"/>
                                 </connections>
                             </button>
+                            <view alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y3G-Gy-MwQ">
+                                <rect key="frame" x="33" y="139" width="254" height="174"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Du0-pz-9nC">
+                                        <rect key="frame" x="28" y="13" width="124" height="28"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                        <color key="textColor" red="0.82352941180000006" green="0.0" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your number:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGl-xW-BQZ">
+                                        <rect key="frame" x="28" y="95" width="124" height="31"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                        <color key="textColor" red="0.82352941180000006" green="0.0" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter your name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dm8-jh-vWz">
+                                        <rect key="frame" x="20" y="49" width="214" height="30"/>
+                                        <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="topReturnKeyPressed:" destination="scj-TH-BXC" eventType="editingDidEndOnExit" id="xgk-OT-eL4"/>
+                                            <outlet property="delegate" destination="cxK-D3-hkQ" id="No5-eI-Fmr"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter your name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EVC-3w-hcM">
+                                        <rect key="frame" x="20" y="127" width="214" height="30"/>
+                                        <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="returnKeyPressed:" destination="scj-TH-BXC" eventType="editingDidEndOnExit" id="hIJ-3x-ySS"/>
+                                            <outlet property="delegate" destination="cxK-D3-hkQ" id="MpK-GS-LLT"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Swipe to begin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgx-XZ-n1m">
+                                <rect key="frame" x="143" y="517" width="135" height="36"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <color key="textColor" red="0.74509803919999995" green="0.74509803919999995" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="m3d-0O-xZf" firstAttribute="bottom" secondItem="J36-xT-jPf" secondAttribute="bottom" constant="20" id="mob-TG-FXa"/>
+                            <constraint firstItem="m3d-0O-xZf" firstAttribute="top" secondItem="dgx-XZ-n1m" secondAttribute="bottom" constant="15" id="z96-5y-reP"/>
                         </constraints>
                     </view>
                     <connections>
@@ -132,10 +183,14 @@
                         <outlet property="backgroundImageView" destination="xla-Ej-DNV" id="5SK-tf-wmb"/>
                         <outlet property="beginButton" destination="hsQ-Ws-40h" id="qGU-dC-tlB"/>
                         <outlet property="contact1label" destination="9ab-7l-oGP" id="8VC-mo-DJY"/>
+                        <outlet property="dataEntryView" destination="Y3G-Gy-MwQ" id="pQ0-Al-3g6"/>
                         <outlet property="iPhone4BeginButton" destination="RCl-1M-rQG" id="mWE-Gy-A57"/>
+                        <outlet property="nameTextBox" destination="dm8-jh-vWz" id="x48-6G-0Jh"/>
                         <outlet property="numberLabel" destination="xa0-B5-aMF" id="fbr-7A-6si"/>
+                        <outlet property="numberTextBox" destination="EVC-3w-hcM" id="pp9-Sv-PcD"/>
                         <outlet property="removeC1" destination="qCT-5g-ase" id="R31-pI-gmB"/>
                         <outlet property="slideArrowImageView" destination="J36-xT-jPf" id="sFU-QQ-5j8"/>
+                        <outlet property="swipeLabel" destination="dgx-XZ-n1m" id="SK3-Yz-Kcp"/>
                         <outlet property="titleLabel" destination="RqQ-0i-CZM" id="LdA-U1-dkO"/>
                     </connections>
                 </viewController>

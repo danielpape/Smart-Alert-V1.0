@@ -41,6 +41,9 @@
 @property (strong, nonatomic) IBOutlet UIImageView *pulse1;
 @property (strong, nonatomic) IBOutlet UIImageView *pulse2;
 
+@property (strong, nonatomic) IBOutlet NSString *nameString;
+@property (strong, nonatomic) IBOutlet NSString *numberString;
+
 - (IBAction) sendTestText;
 - (IBAction) showAddressBook;
 

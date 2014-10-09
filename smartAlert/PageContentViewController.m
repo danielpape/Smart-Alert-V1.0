@@ -40,10 +40,21 @@
     
     NSLog(@"%u",_pageIndex);
     
+    
     if (_pageIndex == 1) {
+        self.dataEntryView.alpha = 1;
+    }
+    
+    if (_pageIndex >=1) {
+        self.swipeLabel.alpha = 0;
+    }
+    
+    if (_pageIndex == 2) {
+        self.dataEntryView.alpha = 0;
         self.addContactButton.alpha = 1;
     }
-    if (_pageIndex == 5) {
+    
+    if (_pageIndex == 6) {
         self.slideArrowImageView.alpha = 0;
         if (!IS_IPHONE_5) {
             self.iPhone4BeginButton.alpha = 1;
@@ -51,9 +62,13 @@
             self.beginButton.alpha = 1;
         }
     }
-    if (_pageIndex >= 2) {
+    if (_pageIndex >= 3) {
         self.slideArrowImageView.highlighted = YES;
     }
+    
+    dataEntryViewOrigin = [self.dataEntryView center];
+    self.nameTextBox.returnKeyType = UIReturnKeyNext;
+    self.numberTextBox.returnKeyType = UIReturnKeyDone;
 
 }
 
@@ -96,6 +111,61 @@
     //menu is only an example
     purchaseContr.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:purchaseContr animated:YES completion:nil];
+}
+
+- (IBAction)topReturnKeyPressed:(id)sender{
+    [self.numberTextBox becomeFirstResponder];
+    if (!IS_IPHONE_5) {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.4];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    CGPoint center = [self.dataEntryView center];
+    center.y = dataEntryViewOrigin.y-100;
+    [self.dataEntryView setCenter:center];
+    [UIView commitAnimations];
+    }
+}
+
+
+- (IBAction)returnKeyPressed:(id)sender {
+     [sender resignFirstResponder];
+    
+    _nameString = [self formatName:[NSString stringWithFormat:self.nameTextBox.text]];
+    _numberString = [self formatNumber:[NSString stringWithFormat:self.numberTextBox.text]];
+
+    NSLog (@"My name string is %@",_nameString);
+    NSLog (@"My number string is %@",_numberString);
+
+    
+    defaults = [[NSUserDefaults alloc]init];
+    [defaults setObject:_nameString forKey:@"myName"];
+    [defaults setObject:_numberString forKey:@"myNumber"];
+    [defaults synchronize];
+    
+    NSLog (@"My saved name is %@",[defaults objectForKey:@"myName"]);
+    NSLog (@"My saved number is %@",[defaults objectForKey:@"myNumber"]);
+    
+    if (![_nameString isEqualToString:@""] && ![_numberString isEqualToString:@""]) {
+        for(UIScrollView *view in self.parentViewController.view.subviews) {
+            
+            if ([view isKindOfClass:[UIScrollView class]]) {
+                
+                view.scrollEnabled = YES;
+            }
+        }
+
+    }
+    
+    if (!IS_IPHONE_5) {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.4];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    CGPoint center = [self.dataEntryView center];
+    center.y = dataEntryViewOrigin.y;
+    [self.dataEntryView setCenter:center];
+    [UIView commitAnimations];
+    }
+    
 }
 
 - (void)displaySlide2Content{
@@ -200,7 +270,7 @@
     NSLog(@"Contacts Names Data is: %@",[self.ChosenContactNames objectAtIndex:0]);
     NSLog(@"Contacts Numbers Data is: %@",[self.ChosenContactNumbers objectAtIndex:0]);
     
-    self.titleLabel.text = [NSString stringWithFormat:@"Thanks. Please swipe to continue."];
+    self.titleLabel.text = [NSString stringWithFormat:@"Thanks, %@. Please swipe to continue.",[defaults objectForKey:@"myName"]];
     
     
     for(UIScrollView *view in self.parentViewController.view.subviews) {
@@ -249,5 +319,18 @@
     
     return formattedNumberString;
 }
+
+-(NSString*)formatName:(NSString*)name{
+    NSString *string = name;
+    NSLog(@"name was %@",name);
+    
+    NSString *formattedNameString = [[string componentsSeparatedByCharactersInSet:
+                                        [[NSCharacterSet alphanumericCharacterSet] invertedSet]]
+                                       componentsJoinedByString:@""];
+    NSLog(@"new name is %@",formattedNameString);
+    
+    return formattedNameString;
+}
+
 
 @end

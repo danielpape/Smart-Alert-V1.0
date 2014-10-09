@@ -16,6 +16,8 @@
 
 #define   IS_IPHONE_5     ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
+NSString *fromString;
+
 @synthesize ibSwitch;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -110,8 +112,18 @@
     
     _contactNumbers = [defaults objectForKey:@"numbersArray"];
     
-    NSString *URL = [NSString stringWithFormat:@"http://rest.nexmo.com/sms/xml?api_key=ac8488f3&api_secret=e30532b5&from=SmartAlert&to=%@&text=From%20%@%20please%20contact%20me%20ASAP%20I%20may%20currently%20be%20in%20an%20emergency%20situation%20and%20need%20your%20help.%20Sent%20via%20Smart%20Alert",[_contactNumbers objectAtIndex:0],[[UIDevice currentDevice] name]];
+    NSString *myName = [defaults objectForKey:@"myName"];
+    NSString *myNumber = [defaults objectForKey:@"myNumber"];
     
+    NSLog(@"my number is %@",myNumber);
+    
+    if ([[_contactNumbers objectAtIndex:0] hasPrefix:@"1"]){
+        fromString = [NSString stringWithFormat:@"12084375123"];
+    }else{
+        fromString = [NSString stringWithFormat:@"SmartAlert"];
+    }
+    
+    NSString *URL = [NSString stringWithFormat:@"http://rest.nexmo.com/sms/xml?api_key=3c87ded3&api_secret=75ff100e&from=%@&to=%@&text=From+%@,+please+contact+me+as+soon+as+possible+on+%@.+I+may+currently+be+in+an+emergency+situation+and+need+your+help.+Sent+via+Smart+Alert.", fromString,[_contactNumbers objectAtIndex:0],myName,myNumber];
     NSLog(@"ALERT SENT, TO URL %@", URL);
     
 //    UIWebView *wv = [[UIWebView alloc] init];
